@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    container_name: app_service
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=localhost
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=Kev0507_24
+      - DB_NAME=lab
+
+  db:
+    image: postgres:15
+    container_name: db_service
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Kev0507_24
+      POSTGRES_DB: lab
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:
